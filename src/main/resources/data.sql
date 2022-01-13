@@ -34,3 +34,9 @@ insert into telefone(idTelefone, id_cliente, tipo_numero, numero, whats) values 
 insert into tipo(idTipo, tipo_aparelho) values (null, 'Lavadora');
 insert into tipo(idTipo, tipo_aparelho) values (null, 'Ferro a Vapor');
 
+insert into marca(idMarca, marca_aparelho) values (null, 'Electrolux');
+insert into marca(idMarca, marca_aparelho) values (null, 'Arno');
+
+insert into modelo(idModelo, modelo_aparelho) values (null, 'XTSSSE');
+insert into modelo(idModelo, modelo_aparelho) values (null, 'ABCDE21');
+

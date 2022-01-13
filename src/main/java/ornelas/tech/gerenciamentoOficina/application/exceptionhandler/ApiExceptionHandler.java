@@ -251,9 +251,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     private List<ProblemDetails.Objeto> getConstraintViolationObjetos(Set<ConstraintViolation<?>> constraintViolations){
-        return constraintViolations.stream().map(cv -> ProblemDetails.Objeto.builder()
-                .name(cv.getPropertyPath().toString())
-                .userMessage(cv.getMessage()).build())
-                .collect(Collectors.toList());
+        return constraintViolations.stream().map(cv -> {
+            String[] propArray = cv.getPropertyPath().toString().split("\\.");
+            return ProblemDetails.Objeto.builder()
+                    .name(propArray[propArray.length-1])
+                    .userMessage(cv.getMessage()).build();
+        }).collect(Collectors.toList());
     }
 }

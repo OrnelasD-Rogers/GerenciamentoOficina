@@ -33,7 +33,7 @@ public class TipoService {
         return tipoRepository.findAllByTipoAparelhoContainingIgnoreCase(tipoAparelho);
     }
 
-    public void tipoExistente(String tipo){
+    public void existsByTipoAparelho(String tipo){
         boolean tipoExistente = tipoRepository.existsByTipoAparelhoEqualsIgnoreCase(tipo);
         if (tipoExistente){
             throw new TipoExistenteException(tipo);

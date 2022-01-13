@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import ornelas.tech.gerenciamentoOficina.domain.model.Tipo;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface TipoRepository extends JpaRepository<Tipo, Long> {

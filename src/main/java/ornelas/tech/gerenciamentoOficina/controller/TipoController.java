@@ -51,14 +51,14 @@ public class TipoController implements TipoDocApi {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public TipoModel save(@Valid @RequestBody TipoInputModel tipoInputModel) {
-        tipoService.tipoExistente(tipoInputModel.getTipoAparelho());
+        tipoService.existsByTipoAparelho(tipoInputModel.getTipoAparelho());
         return assembler.toModel(tipoService.save(desassembler.toDomainModel(tipoInputModel)));
     }
 
     @Override
     @PutMapping("/{idTipo}")
     public TipoModel update(@PathVariable @NotNull Long idTipo, @Valid @RequestBody TipoInputModel tipoInputModel) {
-       tipoService.tipoExistente(tipoInputModel.getTipoAparelho());
+       tipoService.existsByTipoAparelho(tipoInputModel.getTipoAparelho());
         Tipo tipoAtual = tipoService.findById(idTipo);
        desassembler.copyToDomainModel(tipoInputModel, tipoAtual);
         return assembler.toModel(tipoService.save(tipoAtual));
