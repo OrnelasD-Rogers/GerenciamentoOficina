@@ -4,7 +4,6 @@ import lombok.Data;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.List;
 

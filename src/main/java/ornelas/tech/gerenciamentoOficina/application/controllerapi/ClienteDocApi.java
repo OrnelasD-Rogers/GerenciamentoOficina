@@ -41,8 +41,7 @@ public interface ClienteDocApi {
     @Operation(summary = "Procura um cliente pelo seu nome",tags = {"cliente"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="200", description = "Operação realizada com sucesso"
-                    , content = @Content(schema = @Schema(implementation = ClienteModel.class))),
-            @ApiResponse(responseCode="404", description = "Cliente não encontrado")})
+                    , content = @Content(schema = @Schema(implementation = ClienteModel.class)))})
     List<ClienteModel> findByNome(
             @Parameter(description = "Nome do cliente a ser buscado. Não pode ser nulo", required = true)
             @NotBlank String nome);

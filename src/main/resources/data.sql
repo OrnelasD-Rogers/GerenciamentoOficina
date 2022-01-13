@@ -31,3 +31,6 @@ insert into telefone(idTelefone, id_cliente, tipo_numero, numero, whats) values 
 insert into telefone(idTelefone, id_cliente, tipo_numero, numero, whats) values (null, 1, 'TELEFONE', '4430552144', 0);
 insert into telefone(idTelefone, id_cliente, tipo_numero, numero, whats) values (null, 2, 'CELULAR', '44998556332', 1);
 
+insert into tipo(idTipo, tipo_aparelho) values (null, 'Lavadora');
+insert into tipo(idTipo, tipo_aparelho) values (null, 'Ferro a Vapor');
+

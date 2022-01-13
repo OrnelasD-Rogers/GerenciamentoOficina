@@ -3,7 +3,6 @@ package ornelas.tech.gerenciamentoOficina.domain.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 
 @Entity
 @Data
