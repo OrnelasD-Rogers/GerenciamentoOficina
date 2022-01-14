@@ -24,4 +24,8 @@ public class Pagamento {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_pagamento", nullable = false)
     private TipoPagamentoEnum tipoPagamento;
+
+    @ManyToOne
+    @JoinColumn(name = "id_aparelho", nullable = false)
+    private Aparelho aparelho;
 }

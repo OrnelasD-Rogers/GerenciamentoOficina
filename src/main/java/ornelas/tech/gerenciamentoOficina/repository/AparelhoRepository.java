@@ -4,12 +4,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
+import ornelas.tech.gerenciamentoOficina.infrastructure.repository.AparelhosRepositoryQueries;
 
 import java.time.OffsetDateTime;
 import java.util.List;
 
 @Repository
-public interface AparelhoRepository extends JpaRepository<Aparelho, Long> {
+public interface AparelhoRepository extends JpaRepository<Aparelho, Long>, AparelhosRepositoryQueries {
 
     List<Aparelho> findByClienteNomeClienteContainingIgnoringCase(String nomeCliente);
     List<Aparelho> findByTipoTipoAparelhoContainingIgnoringCase(String tipo);

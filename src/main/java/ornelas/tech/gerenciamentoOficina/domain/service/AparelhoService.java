@@ -9,6 +9,7 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.AparelhoNaoEncontrado;
 import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
+import ornelas.tech.gerenciamentoOficina.infrastructure.repository.AparelhoRepositoryImpl;
 import ornelas.tech.gerenciamentoOficina.repository.AparelhoRepository;
 
 import java.time.OffsetDateTime;
@@ -19,6 +20,7 @@ import java.util.List;
 public class AparelhoService {
 
     private final AparelhoRepository aparelhoRepository;
+
 
     public List<Aparelho> findAll(){
         return aparelhoRepository.findAll();
@@ -59,9 +61,7 @@ public class AparelhoService {
 
     @Transactional
     public Aparelho save(Aparelho aparelho){
-        Aparelho aparelhoSalvo = aparelhoRepository.saveAndFlush(aparelho);
-        System.out.println(aparelhoSalvo.toString());
-        return aparelhoRepository.findById(aparelho.getIdAparelho()).orElse(aparelhoSalvo);
+        return aparelhoRepository.saveAparelho(aparelho);
     }
 
     @Transactional

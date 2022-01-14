@@ -102,7 +102,7 @@ public class AparelhoController implements AparelhoDocApi {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{idAparelho}")
-    public AparelhoModel update(@PathVariable Long idAparelho, AparelhoInputModel aparelhoInputModel) {
+    public AparelhoModel update(@PathVariable Long idAparelho, @RequestBody AparelhoInputModel aparelhoInputModel) {
         Aparelho aparelhoAtual = aparelhoService.findById(idAparelho);
         desassembler.copyToDomainClass(aparelhoInputModel, aparelhoAtual);
         return assembler.toModel(aparelhoService.save(aparelhoAtual));
