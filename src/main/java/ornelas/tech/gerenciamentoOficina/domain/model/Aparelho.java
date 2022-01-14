@@ -19,19 +19,19 @@ public class Aparelho {
 
     @ManyToOne
     @JoinColumn(name = "id_cliente", nullable = false)
-    private Cliente idCliente;
+    private Cliente cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_tipo", nullable = false)
-    private Tipo idTipo;
+    private Tipo tipo;
 
     @ManyToOne
     @JoinColumn(name = "id_marca", nullable = false)
-    private Marca idMarca;
+    private Marca marca;
 
     @ManyToOne
     @JoinColumn(name = "id_modelo", nullable = false)
-    private Modelo idModelo;
+    private Modelo modelo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao_aparelho", nullable = false)

@@ -40,3 +40,8 @@ insert into marca(idMarca, marca_aparelho) values (null, 'Arno');
 insert into modelo(idModelo, modelo_aparelho) values (null, 'XTSSSE');
 insert into modelo(idModelo, modelo_aparelho) values (null, 'ABCDE21');
 
+insert into aparelho(idAparelho, id_cliente, id_tipo, id_marca, id_modelo, situacao_aparelho, data_entrada, data_saida, data_alteracao, problema, observacao, urgencia, revisao, mao_de_obra, orcamento)
+values(null, 1, 1, 1, 1, 'NFV', '2022-01-01 14:32:00', null, null, 'Não funciona', 'Semi novo', 0, 0, null, null);
+insert into aparelho(idAparelho, id_cliente, id_tipo, id_marca, id_modelo, situacao_aparelho, data_entrada, data_saida, data_alteracao, problema, observacao, urgencia, revisao, mao_de_obra, orcamento)
+values(null, 2, 2, 2, 2, 'NFV', '2022-02-01 14:32:00', null, null, 'Não aquece', 'Sujo', 0, 0, null, null);
+
