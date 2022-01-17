@@ -2,10 +2,11 @@ package ornelas.tech.gerenciamentoOficina.application.model.input;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Data
 public class CorInputModel {
-    @NotNull
-    private Long idCor;
+
+    @NotBlank
+    private String nomeCor;
 }

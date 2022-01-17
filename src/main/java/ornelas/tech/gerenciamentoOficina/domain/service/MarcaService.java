@@ -9,8 +9,8 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException
 import ornelas.tech.gerenciamentoOficina.domain.exception.MarcaExistenteException;
 import ornelas.tech.gerenciamentoOficina.domain.exception.MarcaNaoEncontradaException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Marca;
-import ornelas.tech.gerenciamentoOficina.repository.MarcaRepository;
-import ornelas.tech.gerenciamentoOficina.util.StringsUtils;
+import ornelas.tech.gerenciamentoOficina.domain.repository.MarcaRepository;
+import ornelas.tech.gerenciamentoOficina.util.StringsMethods;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class MarcaService {
 
     @Transactional
     public Marca save(Marca marca){
-        marca.setMarcaAparelho(StringsUtils.upperCaseAllFirstWord(marca.getMarcaAparelho()));
+        marca.setMarcaAparelho(StringsMethods.upperCaseAllFirstWord(marca.getMarcaAparelho()));
         return marcaRepository.save(marca);
     }
 

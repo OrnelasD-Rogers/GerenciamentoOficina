@@ -1,13 +1,16 @@
 package ornelas.tech.gerenciamentoOficina.infrastructure.repository;
 
+import org.hibernate.jpa.QueryHints;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ornelas.tech.gerenciamentoOficina.domain.exception.CorNaoEncontradaException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.Cor;
+import ornelas.tech.gerenciamentoOficina.domain.repository.AparelhosRepositoryQueries;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,6 +48,31 @@ public class AparelhoRepositoryImpl implements AparelhosRepositoryQueries {
 
         }
         return manager.find(Aparelho.class, aparelho.getIdAparelho());
+    }
+
+
+    @Override
+    public List<Aparelho> findAllJoining() {
+        List<Aparelho> aparelhos = new ArrayList<>();
+
+        String queryGeneralizada = "select a from Aparelho a join fetch a.cliente join fetch a.tipo " +
+                "join fetch a.marca join fetch a.modelo join fetch a.tecnico";
+        aparelhos = manager.createQuery(queryGeneralizada, Aparelho.class)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+
+        String queryCores = "select a from Aparelho a left join fetch a.cores";
+        aparelhos = manager.createQuery(queryCores, Aparelho.class)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+
+        String queryPagamentos = "select a from Aparelho a left join fetch a.pagamentos";
+        aparelhos = manager.createQuery(queryPagamentos, Aparelho.class)
+                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
+                .getResultList();
+
+        return aparelhos;
+
     }
 
 

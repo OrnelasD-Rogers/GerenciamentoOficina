@@ -11,7 +11,7 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException
 import ornelas.tech.gerenciamentoOficina.domain.exception.TelefoneNaoEncontradoException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Cliente;
 import ornelas.tech.gerenciamentoOficina.domain.model.Telefone;
-import ornelas.tech.gerenciamentoOficina.repository.ClienteRepository;
+import ornelas.tech.gerenciamentoOficina.domain.repository.ClienteRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -64,7 +64,7 @@ public class ClienteService {
             throw new ClienteNaoEncontradoException(idCliente);
         } catch (DataIntegrityViolationException e){
             throw new EntidadeEmUsoException(
-                    String.format("O cliente com o id %d está em uso e não pode ser excluido", idCliente));
+                    String.format("O cliente com o id '%d' está em uso e não pode ser excluido", idCliente));
         }
     }
 

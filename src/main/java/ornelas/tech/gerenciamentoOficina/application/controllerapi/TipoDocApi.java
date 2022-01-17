@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ornelas.tech.gerenciamentoOficina.application.model.TipoModel;
 import ornelas.tech.gerenciamentoOficina.application.model.input.TipoInputModel;
-import ornelas.tech.gerenciamentoOficina.domain.model.Tipo;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -66,7 +65,8 @@ public interface TipoDocApi {
     @Operation(summary = "Exclui um tipo de aparelho",tags = {"Tipo"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="204", description = "Exclusão realizada com sucesso"),
-            @ApiResponse(responseCode="404", description = "Tipo de aparelho não encontrado")})
+            @ApiResponse(responseCode="404", description = "Tipo de aparelho não encontrado"),
+            @ApiResponse(responseCode="409", description = "O tipo está em uso e não pode ser excluido")})
     void delete(
             @Parameter(description = "Id do tipo de aparelho a ser excluido. Não pode ser nulo", required = true)
             @NotNull Long idTipo);

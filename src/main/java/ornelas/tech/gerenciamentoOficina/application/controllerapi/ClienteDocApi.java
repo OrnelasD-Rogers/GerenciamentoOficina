@@ -83,7 +83,8 @@ public interface ClienteDocApi {
     @Operation(summary = "Exclui um cliente",tags = {"cliente"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="204", description = "Exclusão realizada com sucesso"),
-            @ApiResponse(responseCode="404", description = "Cliente não encontrado")})
+            @ApiResponse(responseCode="404", description = "Cliente não encontrado"),
+            @ApiResponse(responseCode="409", description = "O cliente está em uso e não pode ser excluido")})
     void delete(
             @Parameter(description = "Id do cliente a ser excluido. Não pode ser nulo", required = true)
             @NotNull Long id);
@@ -91,7 +92,8 @@ public interface ClienteDocApi {
     @Operation(summary = "Exclui um telefone de um cliente",tags = {"cliente", "telefone"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="204", description = "Exclusão realizada com sucesso"),
-            @ApiResponse(responseCode="404", description = "Telefone do cliente não encontrado")})
+            @ApiResponse(responseCode="404", description = "Telefone do cliente não encontrado"),
+            @ApiResponse(responseCode="409", description = "O telefone do cliente está em uso e não pode ser excluido")})
     void deleteTel(
             @Parameter(description = "Id do cliente a ter o telefone excluido. Não pode ser nulo", required = true)
             @NotNull Long idCliente,

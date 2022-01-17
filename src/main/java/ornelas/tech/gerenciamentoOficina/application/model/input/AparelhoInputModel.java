@@ -2,7 +2,6 @@ package ornelas.tech.gerenciamentoOficina.application.model.input;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import ornelas.tech.gerenciamentoOficina.application.model.CorModel;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
 
 import javax.validation.Valid;
@@ -23,7 +22,8 @@ public class AparelhoInputModel {
     @Valid
     private ModeloIdInputModel modelo;
     @Valid
-    private List<CorInputModel> cores;
+    private List<CorIdInputModel> cores;
+    private TecnicoInputModel tecnico;
     @NotNull
     private SituacaoAparelhoEnum situacaoAparelho;
     @NotNull

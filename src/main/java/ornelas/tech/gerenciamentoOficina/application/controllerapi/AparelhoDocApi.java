@@ -9,9 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ornelas.tech.gerenciamentoOficina.application.model.AparelhoModel;
-import ornelas.tech.gerenciamentoOficina.application.model.ClienteModel;
 import ornelas.tech.gerenciamentoOficina.application.model.input.AparelhoInputModel;
-import ornelas.tech.gerenciamentoOficina.application.model.input.ClienteInputModel;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
 
 import javax.validation.Valid;
@@ -119,7 +117,8 @@ public interface AparelhoDocApi {
 
     @Operation(summary = "Exclui um aparelho",tags = {"Aparelho"})
     @ApiResponses(value = {
-    @ApiResponse(responseCode="204", description = "Operação realizada com sucesso")})
+    @ApiResponse(responseCode="204", description = "Operação realizada com sucesso"),
+    @ApiResponse(responseCode="409", description = "O aparelho está em uso e não pode ser excluido")})
     void delete(
             @Parameter(description = "Id do aparelho a ser excluido. Não pode ser nulo", required = true)
             @NotNull Long idAparelho);

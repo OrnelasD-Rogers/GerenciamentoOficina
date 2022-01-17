@@ -64,7 +64,8 @@ public interface ModeloDocApi {
     @Operation(summary = "Exclui um modelo de aparelho",tags = {"Modelo"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="204", description = "Exclusão realizada com sucesso"),
-            @ApiResponse(responseCode="404", description = "Modelo de aparelho não encontrado")})
+            @ApiResponse(responseCode="404", description = "Modelo de aparelho não encontrado"),
+            @ApiResponse(responseCode="409", description = "O modelo está em uso e não pode ser excluido")})
     void delete(
             @Parameter(description = "Id do modelo de aparelho a ser excluido. Não pode ser nulo", required = true)
             @NotNull Long idModelo);

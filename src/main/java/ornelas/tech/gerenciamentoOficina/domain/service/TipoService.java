@@ -9,8 +9,8 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException
 import ornelas.tech.gerenciamentoOficina.domain.exception.TipoExistenteException;
 import ornelas.tech.gerenciamentoOficina.domain.exception.TipoNaoEncontradoExeption;
 import ornelas.tech.gerenciamentoOficina.domain.model.Tipo;
-import ornelas.tech.gerenciamentoOficina.repository.TipoRepository;
-import ornelas.tech.gerenciamentoOficina.util.StringsUtils;
+import ornelas.tech.gerenciamentoOficina.domain.repository.TipoRepository;
+import ornelas.tech.gerenciamentoOficina.util.StringsMethods;
 
 import java.util.List;
 
@@ -42,7 +42,7 @@ public class TipoService {
 
     @Transactional
     public Tipo save(Tipo tipo){
-        tipo.setTipoAparelho(StringsUtils.upperCaseAllFirstWord(tipo.getTipoAparelho()));
+        tipo.setTipoAparelho(StringsMethods.upperCaseAllFirstWord(tipo.getTipoAparelho()));
         return tipoRepository.save(tipo);
     }
 

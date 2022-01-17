@@ -14,6 +14,7 @@ public class AparelhoModel {
     private TipoModel tipo;
     private MarcaModel marca;
     private ModeloModel modelo;
+    private TecnicoModel tecnico;
     private List<CorModel> cores;
     private SituacaoAparelhoEnum situacaoAparelho;
     private OffsetDateTime dataEntrada;

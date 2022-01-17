@@ -10,7 +10,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import ornelas.tech.gerenciamentoOficina.application.model.MarcaModel;
 import ornelas.tech.gerenciamentoOficina.application.model.input.MarcaInputModel;
-import ornelas.tech.gerenciamentoOficina.domain.model.Marca;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -66,7 +65,8 @@ public interface MarcaDocApi {
     @Operation(summary = "Exclui uma marca de aparelho",tags = {"Marca"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="204", description = "Exclusão realizada com sucesso"),
-            @ApiResponse(responseCode="404", description = "Marca de aparelho não encontrado")})
+            @ApiResponse(responseCode="404", description = "Marca de aparelho não encontrado"),
+            @ApiResponse(responseCode="409", description = "A marca está em uso e não pode ser excluida")})
     void delete(
             @Parameter(description = "Id da marca de aparelho a ser excluida. Não pode ser nulo", required = true)
             @NotNull Long idMarca);

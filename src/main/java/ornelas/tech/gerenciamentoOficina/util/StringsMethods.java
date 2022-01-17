@@ -1,6 +1,6 @@
 package ornelas.tech.gerenciamentoOficina.util;
 
-public class StringsUtils {
+public class StringsMethods {
 
     /**
      *

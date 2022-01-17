@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ornelas.tech.gerenciamentoOficina.domain.exception.ModeloExistenteException;
 import ornelas.tech.gerenciamentoOficina.domain.exception.ModeloNaoEncontradoException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Modelo;
-import ornelas.tech.gerenciamentoOficina.repository.ModeloRepository;
+import ornelas.tech.gerenciamentoOficina.domain.repository.ModeloRepository;
 
 import java.util.List;
 

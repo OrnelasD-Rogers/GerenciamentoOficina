@@ -40,6 +40,10 @@ public class Aparelho {
     inverseJoinColumns = @JoinColumn(name = "id_cor", nullable = false))
     private List<Cor> cores = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "id_tecnico", nullable = false)
+    private Tecnico tecnico;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao_aparelho", nullable = false)
     private SituacaoAparelhoEnum situacaoAparelho;

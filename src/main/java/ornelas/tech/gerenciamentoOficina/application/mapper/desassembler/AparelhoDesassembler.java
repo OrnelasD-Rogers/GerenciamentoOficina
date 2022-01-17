@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.stereotype.Component;
 import ornelas.tech.gerenciamentoOficina.application.model.input.AparelhoInputModel;
-import ornelas.tech.gerenciamentoOficina.application.model.input.CorInputModel;
+import ornelas.tech.gerenciamentoOficina.application.model.input.CorIdInputModel;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.Cor;
 
@@ -45,7 +45,7 @@ public class AparelhoDesassembler {
             context.getDestination().setMaoDeObra(context.getSource().getMaoDeObra());
             context.getDestination().setOrcamento(context.getSource().getOrcamento());
             context.getDestination().getCores().clear();
-            for (CorInputModel cor: context.getSource().getCores()) {
+            for (CorIdInputModel cor: context.getSource().getCores()) {
                 context.getDestination().getCores().add(new Cor(cor.getIdCor(), null, new ArrayList<>()));
             }
 

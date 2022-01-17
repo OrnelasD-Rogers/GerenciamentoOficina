@@ -9,7 +9,7 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.AparelhoNaoEncontrado;
 import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
-import ornelas.tech.gerenciamentoOficina.repository.AparelhoRepository;
+import ornelas.tech.gerenciamentoOficina.domain.repository.AparelhoRepository;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -22,7 +22,7 @@ public class AparelhoService {
 
 
     public List<Aparelho> findAll(){
-        return aparelhoRepository.findAll();
+        return aparelhoRepository.findAllJoining();
     }
 
     public Aparelho findById(Long idAparelho){
