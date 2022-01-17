@@ -9,7 +9,6 @@ import ornelas.tech.gerenciamentoOficina.domain.exception.AparelhoNaoEncontrado;
 import ornelas.tech.gerenciamentoOficina.domain.exception.EntidadeEmUsoException;
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
 import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
-import ornelas.tech.gerenciamentoOficina.infrastructure.repository.AparelhoRepositoryImpl;
 import ornelas.tech.gerenciamentoOficina.repository.AparelhoRepository;
 
 import java.time.OffsetDateTime;

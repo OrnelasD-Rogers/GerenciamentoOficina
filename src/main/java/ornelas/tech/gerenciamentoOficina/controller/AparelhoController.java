@@ -111,7 +111,7 @@ public class AparelhoController implements AparelhoDocApi {
     @Override
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{idAparelho}")
-    public void delete(Long idAparelho) {
+    public void delete(@PathVariable Long idAparelho) {
         aparelhoService.delete(idAparelho);
     }
 }

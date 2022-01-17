@@ -6,5 +6,4 @@ public interface AparelhosRepositoryQueries {
 
     Aparelho saveAparelho(Aparelho aparelho);
 
-    Aparelho updateAparelho(Aparelho aparelho);
 }
