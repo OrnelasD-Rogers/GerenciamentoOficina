@@ -28,7 +28,7 @@ public class CorController implements CorDocApi {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CorModel> findlAll() {
-        return assembler.toCollectionModel(corService.findlAll());
+        return assembler.toCollectionModel(corService.findAll());
     }
 
     @Override

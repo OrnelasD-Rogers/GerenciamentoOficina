@@ -16,14 +16,16 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class CorService {
+public class CorService implements ServiceInterface<Cor, Long>{
 
     private final CorRepository corRepository;
 
-    public List<Cor> findlAll(){
+    @Override
+    public List<Cor> findAll(){
         return corRepository.findAll();
     }
 
+    @Override
     public Cor findById(Long idCor){
         return corRepository.findById(idCor).orElseThrow(
                 () -> new CorNaoEncontradaException(idCor));
@@ -40,12 +42,14 @@ public class CorService {
         }
     }
 
+    @Override
     @Transactional
     public Cor save(Cor cor){
         cor.setNomeCor(StringsMethods.upperCaseAllFirstWord(cor.getNomeCor()));
         return corRepository.save(cor);
     }
 
+    @Override
     @Transactional
     public void deleteById(Long idCor){
         try {

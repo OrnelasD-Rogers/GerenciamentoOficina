@@ -16,15 +16,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AparelhoService {
+public class AparelhoService implements ServiceInterface<Aparelho, Long>{
 
     private final AparelhoRepository aparelhoRepository;
 
 
+    @Override
     public List<Aparelho> findAll(){
         return aparelhoRepository.findAllJoining();
     }
 
+    @Override
     public Aparelho findById(Long idAparelho){
         return aparelhoRepository.findById(idAparelho).orElseThrow(
                 () -> new AparelhoNaoEncontrado(idAparelho));
@@ -58,13 +60,15 @@ public class AparelhoService {
         return aparelhoRepository.findByDataSaidaBetween(inicio, limite);
     }
 
+    @Override
     @Transactional
     public Aparelho save(Aparelho aparelho){
         return aparelhoRepository.saveAparelho(aparelho);
     }
 
+    @Override
     @Transactional
-    public void delete(Long idAparelho){
+    public void deleteById(Long idAparelho){
         try {
             aparelhoRepository.deleteById(idAparelho);
             aparelhoRepository.flush();

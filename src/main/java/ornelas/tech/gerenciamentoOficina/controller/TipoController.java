@@ -68,6 +68,6 @@ public class TipoController implements TipoDocApi {
     @DeleteMapping("/{idTipo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable @NotNull Long idTipo) {
-        tipoService.delete(idTipo);
+        tipoService.deleteById(idTipo);
     }
 }

@@ -67,6 +67,6 @@ public class MarcaController implements MarcaDocApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{idMarca}")
     public void delete(@PathVariable Long idMarca) {
-        marcaService.delete(idMarca);
+        marcaService.deleteById(idMarca);
     }
 }

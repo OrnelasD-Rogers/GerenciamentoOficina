@@ -16,14 +16,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TipoService {
+public class TipoService implements ServiceInterface<Tipo, Long>{
 
     private final TipoRepository tipoRepository;
 
+    @Override
     public List<Tipo> findAll(){
         return tipoRepository.findAll();
     }
 
+    @Override
     public Tipo findById(Long idTipo){
         return tipoRepository.findById(idTipo).orElseThrow(
                 () -> new TipoNaoEncontradoExeption(idTipo));
@@ -33,6 +35,7 @@ public class TipoService {
         return tipoRepository.findAllByTipoAparelhoContainingIgnoreCase(tipoAparelho);
     }
 
+
     public void existsByTipoAparelho(String tipo){
         boolean tipoExistente = tipoRepository.existsByTipoAparelhoEqualsIgnoreCase(tipo);
         if (tipoExistente){
@@ -40,14 +43,16 @@ public class TipoService {
         }
     }
 
+    @Override
     @Transactional
     public Tipo save(Tipo tipo){
         tipo.setTipoAparelho(StringsMethods.upperCaseAllFirstWord(tipo.getTipoAparelho()));
         return tipoRepository.save(tipo);
     }
 
+    @Override
     @Transactional
-    public void delete(Long idTipo){
+    public void deleteById(Long idTipo){
         try {
             tipoRepository.deleteById(idTipo);
             tipoRepository.flush();

@@ -67,6 +67,6 @@ public class ModeloController implements ModeloDocApi {
     @Override
     @DeleteMapping("/{idModelo}")
     public void delete(@PathVariable Long idModelo) {
-        modeloService.delete(idModelo);
+        modeloService.deleteById(idModelo);
     }
 }

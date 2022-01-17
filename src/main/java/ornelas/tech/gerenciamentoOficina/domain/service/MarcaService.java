@@ -16,14 +16,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class MarcaService {
+public class MarcaService implements ServiceInterface<Marca, Long>{
 
     private final MarcaRepository marcaRepository;
 
+    @Override
     public List<Marca> findAll(){
         return marcaRepository.findAll();
     }
 
+    @Override
     public Marca findById(Long idMarca){
         return marcaRepository.findById(idMarca).orElseThrow(
                 () -> new MarcaNaoEncontradaException(idMarca));
@@ -40,14 +42,16 @@ public class MarcaService {
         }
     }
 
+    @Override
     @Transactional
     public Marca save(Marca marca){
         marca.setMarcaAparelho(StringsMethods.upperCaseAllFirstWord(marca.getMarcaAparelho()));
         return marcaRepository.save(marca);
     }
 
+    @Override
     @Transactional
-    public void delete(Long idMarca){
+    public void deleteById(Long idMarca){
         try {
             marcaRepository.deleteById(idMarca);
             marcaRepository.flush();

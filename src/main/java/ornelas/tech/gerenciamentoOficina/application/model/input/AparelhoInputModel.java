@@ -23,7 +23,7 @@ public class AparelhoInputModel {
     private ModeloIdInputModel modelo;
     @Valid
     private List<CorIdInputModel> cores;
-    private TecnicoInputModel tecnico;
+    private TecnicoIdInputModel tecnico;
     @NotNull
     private SituacaoAparelhoEnum situacaoAparelho;
     @NotNull

@@ -78,7 +78,7 @@ public class ClienteController implements ClienteDocApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{idCliente}")
     public void delete(@NotNull @PathVariable Long idCliente) {
-        clienteService.delete(idCliente);
+        clienteService.deleteById(idCliente);
     }
 
     @Override

@@ -18,14 +18,16 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ClienteService {
+public class ClienteService implements ServiceInterface<Cliente, Long>{
 
     private final ClienteRepository clienteRepository;
 
+    @Override
     public List<Cliente> findAll(){
         return clienteRepository.findAll();
     }
 
+    @Override
     public Cliente findById(Long clienteId){
         return clienteRepository.findById(clienteId).orElseThrow(
                 () -> new ClienteNaoEncontradoException(clienteId));
@@ -40,6 +42,7 @@ public class ClienteService {
         return clienteRepository.findByNomeCliente(nome);
     }
 
+    @Override
     @Transactional
     public Cliente save(Cliente cliente){
         boolean cpfCadastrado = clienteRepository.findByCpf(cliente.getCpf()).isPresent();
@@ -55,8 +58,9 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    @Override
     @Transactional
-    public void delete(Long idCliente){
+    public void deleteById(Long idCliente){
         try {
             clienteRepository.deleteById(idCliente);
             clienteRepository.flush();
