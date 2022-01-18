@@ -60,6 +60,14 @@ public class AparelhoService implements ServiceInterface<Aparelho, Long>{
         return aparelhoRepository.findByDataSaidaBetween(inicio, limite);
     }
 
+    public List<Aparelho> criteriaSearch(String nomeTipo, String nomeMarca, String nomeModelo, SituacaoAparelhoEnum situacao,
+                                         OffsetDateTime dataEntradaIni, OffsetDateTime dataEntradaLimite,
+                                         OffsetDateTime dataSaidaIni,OffsetDateTime dataSaidaLimite)
+    {
+        return aparelhoRepository.criteriaSearch(nomeTipo, nomeMarca, nomeModelo, situacao, dataEntradaIni,
+                dataEntradaLimite, dataSaidaIni, dataSaidaLimite);
+    }
+
     @Override
     @Transactional
     public Aparelho save(Aparelho aparelho){

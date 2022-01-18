@@ -26,5 +26,4 @@ public class AparelhoModel {
     private Boolean revisao;
     private Double maoDeObra;
     private String orcamento;
-    private List<PagamentoModel> pagamentos;
 }

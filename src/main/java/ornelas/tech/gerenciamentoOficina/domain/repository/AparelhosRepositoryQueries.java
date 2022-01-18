@@ -1,7 +1,9 @@
 package ornelas.tech.gerenciamentoOficina.domain.repository;
 
 import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
+import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 
 public interface AparelhosRepositoryQueries {
@@ -13,5 +15,9 @@ public interface AparelhosRepositoryQueries {
      * @return Lista de aparelhos
      */
     List<Aparelho> findAllJoining();
+
+    List<Aparelho> criteriaSearch(String nomeTipo, String nomeMarca, String nomeModelo, SituacaoAparelhoEnum situacao,
+                                  OffsetDateTime dataEntradaIni, OffsetDateTime dataEntradaLimite,
+                                  OffsetDateTime dataSaidaIni,OffsetDateTime dataSaidaLimite);
 
 }

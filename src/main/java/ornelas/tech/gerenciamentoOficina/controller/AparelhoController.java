@@ -20,7 +20,7 @@ import java.util.List;
 @Validated
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("v1/aparelho")
+@RequestMapping("/v1/aparelho")
 public class AparelhoController implements AparelhoDocApi {
 
     private final AparelhoService aparelhoService;
@@ -90,6 +90,27 @@ public class AparelhoController implements AparelhoDocApi {
     public List<AparelhoModel> findByDataSaida(@DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX") @RequestParam OffsetDateTime inicio,
                                                @DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX") @RequestParam OffsetDateTime limite) {
         return assembler.toCollectionModel(aparelhoService.findByDataSaida(inicio, limite));
+    }
+
+    @Override
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/busca-personalizada")
+    public List<AparelhoModel> criteriaSearch(@RequestParam(required = false) String nomeTipo,
+                                              @RequestParam(required = false) String nomeMarca,
+                                              @RequestParam(required = false) String nomeModelo,
+                                              @RequestParam(required = false) SituacaoAparelhoEnum situacao,
+                                              @DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX")
+                                                  @RequestParam(required = false) OffsetDateTime dataEntradaIni,
+                                              @DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX")
+                                                  @RequestParam(required = false) OffsetDateTime dataEntradaLimite,
+                                              @DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX")
+                                                  @RequestParam(required = false) OffsetDateTime dataSaidaIni,
+                                              @DateTimeFormat(pattern = "uuuu-MM-dd'T'HH:mm:ssXXXXX")
+                                                  @RequestParam(required = false) OffsetDateTime dataSaidaLimite)
+    {
+        List<Aparelho> aparelhos = aparelhoService.criteriaSearch(nomeTipo, nomeMarca, nomeModelo, situacao,
+                dataEntradaIni, dataEntradaLimite, dataSaidaIni, dataSaidaLimite);
+        return assembler.toCollectionModel(aparelhos);
     }
 
     @Override

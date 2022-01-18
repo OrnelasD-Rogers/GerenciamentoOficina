@@ -97,6 +97,28 @@ public interface AparelhoDocApi {
             @Parameter(description = "limite da data de saida do aparelho a ser buscado. Não pode ser nulo", required = true)
             @NotNull OffsetDateTime limite);
 
+    @Operation(summary = "Procura aparelhos por diversos criterios",tags = {"Aparelho"})
+    @ApiResponses(value = {
+    @ApiResponse(responseCode="200", description = "Operação realizada com sucesso"
+    , content = @Content(schema = @Schema(implementation = AparelhoModel.class)))})
+    List<AparelhoModel> criteriaSearch(
+            @Parameter(description = "Tipo do aparelho a ser buscado")
+            String nomeTipo,
+            @Parameter(description = "Marca do aparelho a ser buscado")
+            String nomeMarca,
+            @Parameter(description = "Modelo do aparelho a ser buscado")
+            String nomeModelo,
+            @Parameter(description = "Situacao do aparelho a ser buscado")
+            SituacaoAparelhoEnum situacao,
+            @Parameter(description = "Data de entrada inicial do aparelho a ser buscado")
+            OffsetDateTime dataEntradaIni,
+            @Parameter(description = "Data de entrada limite do aparelho a ser buscado")
+            OffsetDateTime dataEntradaLimite,
+            @Parameter(description = "Data de saida inicial do aparelho a ser buscado")
+            OffsetDateTime dataSaidaIni,
+            @Parameter(description = "Data de saida limite do aparelho a ser buscado")
+            OffsetDateTime dataSaidaLimite);
+
     @Operation(summary = "Cadastra um aparelho",tags = {"Aparelho"})
     @ApiResponses(value = {
             @ApiResponse(responseCode="201", description = "Operação realizada com sucesso"
