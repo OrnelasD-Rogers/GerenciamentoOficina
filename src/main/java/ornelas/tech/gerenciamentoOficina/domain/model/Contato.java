@@ -16,15 +16,19 @@ public class Contato {
 
     @ManyToOne
     @JoinColumn(name = "id_telefone")
-    private Telefone idTelefone;
+    private Telefone telefone;
 
     @ManyToOne
     @JoinColumn(name = "id_aparelho", nullable = false)
-    private Aparelho idAparelho;
+    private Aparelho aparelho;
 
     @ManyToOne
     @JoinColumn(name = "id_tecnico", nullable = false)
-    private Tecnico idTecnico;
+    private Tecnico tecnico;
+
+    @Lob
+    @Column(name = "mensagem", nullable = false)
+    private String mensagem;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "situacao_aparelho", nullable = false)
