@@ -14,6 +14,7 @@ Implementar em produção esta API enquanto demonstro conceitos de API Rest, Spr
 - Foi utilizado o [Hibernate](https://hibernate.org/) como implementação para o JPA;
 - [Lombok](https://projectlombok.org/) para diminuir o Boilerplate code;
 - Utilizado o [ModelMapper](http://modelmapper.org/) para facilitar a aplicação do padrão **DTO**;
+- [OpenApi](https://swagger.io/specification/)(Swagger) para documentação da API. A documentação pode ser conferida em [localhost:8080/swagger-ui.html]()
 
 ### 🚦 VALIDACOES
 
