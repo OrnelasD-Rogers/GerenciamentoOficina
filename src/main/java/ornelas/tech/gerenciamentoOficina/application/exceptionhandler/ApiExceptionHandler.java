@@ -201,15 +201,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, problemDetails, new HttpHeaders(), status, request);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<?> handleGenericException(Exception ex, WebRequest request){
-//        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-//        ProblemType problemType = ProblemType.ERRO_NEGOCIO;
-//        String details = MSG_ERRO_GENERICA_USUARIO_FINAL;
-//        ProblemDetails problemDetails = createProblem(status, problemType, details)
-//                .userMessage(details).build();
-//        return handleExceptionInternal(ex, problemDetails, new HttpHeaders(), status, request);
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleGenericException(Exception ex, WebRequest request){
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+        ProblemType problemType = ProblemType.ERRO_NEGOCIO;
+        String details = MSG_ERRO_GENERICA_USUARIO_FINAL;
+        ProblemDetails problemDetails = createProblem(status, problemType, details)
+                .userMessage(details).build();
+        return handleExceptionInternal(ex, problemDetails, new HttpHeaders(), status, request);
+    }
 
 
     @Override

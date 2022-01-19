@@ -5,18 +5,13 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import ornelas.tech.gerenciamentoOficina.domain.exception.CorNaoEncontradaException;
-import ornelas.tech.gerenciamentoOficina.domain.model.Aparelho;
-import ornelas.tech.gerenciamentoOficina.domain.model.Cor;
-import ornelas.tech.gerenciamentoOficina.domain.model.SituacaoAparelhoEnum;
+import ornelas.tech.gerenciamentoOficina.domain.model.*;
 import ornelas.tech.gerenciamentoOficina.domain.repository.AparelhosRepositoryQueries;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,13 +88,16 @@ public class AparelhoRepositoryImpl implements AparelhosRepositoryQueries {
         var predicate = new ArrayList<Predicate>();
 
         if(StringUtils.hasText(nomeTipo)){
-            predicate.add(builder.like(root.get("tipo").get("tipoAparelho"), "%" + nomeTipo + "%"));
+            Join<Aparelho, Tipo> tipo = (Join) root.fetch(Aparelho_.tipo);
+            predicate.add(builder.like(tipo.get("tipoAparelho"), "%" + nomeTipo + "%"));
         }
         if(StringUtils.hasText(nomeMarca)){
-            predicate.add(builder.like(root.get("marca").get("marcaAparelho"), "%" + nomeMarca + "%"));
+            Join<Aparelho, Marca> marca = (Join) root.fetch(Aparelho_.marca);
+            predicate.add(builder.like(marca.get("marcaAparelho"), "%" + nomeMarca + "%"));
         }
         if(StringUtils.hasText(nomeModelo)){
-            predicate.add(builder.like(root.get("modelo").get("modeloAparelho"), "%" + nomeModelo + "%"));
+            Join<Aparelho, Marca> modelo = (Join) root.fetch(Aparelho_.modelo);
+            predicate.add(builder.like(modelo.get("modeloAparelho"), "%" + nomeModelo + "%"));
         }
         if(situacao != null){
             predicate.add(builder.equal(root.get("situacaoAparelho"), situacao));
