@@ -43,7 +43,5 @@ Muito obrigado pela atenção e qualquer dúvida ou sugestão, basta me contatar
 
 Me chamo Vinícius Ornelas de Almeida e estou mergulhando na carreira de desenvolvedor. Quem sabe uma hora a gente não se ajuda?
 
-[![Linkedin](https://img.shields.io/badge/Vinícius Ornelas-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/vinicius-ornelas/)](https://www.linkedin.com/in/vinicius-ornelas/)
-
-[![Outlook](https://img.shields.io/badge/ornelas95@hotmail.com-0078D4?style=flat-square&logo=microsoft-outlook&logoColor=white)](mailto:ornelas95@hotmail.com)
+[![Linkedin](https://img.shields.io/badge/Vinícius-%230077B5.svg?style=flat-square&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/vinicius-ornelas/)](https://www.linkedin.com/in/vinicius-ornelas/) [![Outlook](https://img.shields.io/badge/ornelas95@hotmail.com-0078D4?style=flat-square&logo=microsoft-outlook&logoColor=white)](mailto:ornelas95@hotmail.com)
 
