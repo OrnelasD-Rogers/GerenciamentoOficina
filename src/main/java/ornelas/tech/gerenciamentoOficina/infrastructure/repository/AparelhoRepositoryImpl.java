@@ -57,19 +57,18 @@ public class AparelhoRepositoryImpl implements AparelhosRepositoryQueries {
     public List<Aparelho> findAllJoining() {
         List<Aparelho> aparelhos = new ArrayList<>();
 
+        //Dividi em duas queries para que o JPA faça apenas um select e não um N+1
+
+        //Query com relacionamento Nx1
         String queryGeneralizada = "select a from Aparelho a join fetch a.cliente join fetch a.tipo " +
                 "join fetch a.marca join fetch a.modelo join fetch a.tecnico";
         aparelhos = manager.createQuery(queryGeneralizada, Aparelho.class)
                 .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
                 .getResultList();
 
+        //Query com relacionamento NxN
         String queryCores = "select a from Aparelho a left join fetch a.cores";
         aparelhos = manager.createQuery(queryCores, Aparelho.class)
-                .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
-                .getResultList();
-
-        String queryPagamentos = "select a from Aparelho a left join fetch a.pagamentos";
-        aparelhos = manager.createQuery(queryPagamentos, Aparelho.class)
                 .setHint(QueryHints.HINT_PASS_DISTINCT_THROUGH, false)
                 .getResultList();
 
@@ -86,18 +85,30 @@ public class AparelhoRepositoryImpl implements AparelhosRepositoryQueries {
         CriteriaQuery<Aparelho> criteria = builder.createQuery(Aparelho.class);
         Root<Aparelho> root = criteria.from(Aparelho.class);
         var predicate = new ArrayList<Predicate>();
+        List<Selection<Aparelho>> selections = new ArrayList<>();
+
+        root.fetch(Aparelho_.cliente);
+        root.fetch(Aparelho_.tecnico);
+        root.fetch(Aparelho_.cores, JoinType.LEFT);
 
         if(StringUtils.hasText(nomeTipo)){
             Join<Aparelho, Tipo> tipo = (Join) root.fetch(Aparelho_.tipo);
             predicate.add(builder.like(tipo.get("tipoAparelho"), "%" + nomeTipo + "%"));
+
+        } else{
+            root.fetch(Aparelho_.tipo);
         }
         if(StringUtils.hasText(nomeMarca)){
             Join<Aparelho, Marca> marca = (Join) root.fetch(Aparelho_.marca);
             predicate.add(builder.like(marca.get("marcaAparelho"), "%" + nomeMarca + "%"));
+        } else{
+            root.fetch(Aparelho_.marca);
         }
         if(StringUtils.hasText(nomeModelo)){
             Join<Aparelho, Marca> modelo = (Join) root.fetch(Aparelho_.modelo);
             predicate.add(builder.like(modelo.get("modeloAparelho"), "%" + nomeModelo + "%"));
+        } else{
+            root.fetch(Aparelho_.modelo);
         }
         if(situacao != null){
             predicate.add(builder.equal(root.get("situacaoAparelho"), situacao));
@@ -116,7 +127,7 @@ public class AparelhoRepositoryImpl implements AparelhosRepositoryQueries {
         }
         criteria.where(predicate.toArray(new Predicate[0]));
 
-        TypedQuery<Aparelho> query = manager.createQuery(criteria);
+        TypedQuery<Aparelho> query = manager.createQuery(criteria.distinct(true));
 
         return query.getResultList();
     }
